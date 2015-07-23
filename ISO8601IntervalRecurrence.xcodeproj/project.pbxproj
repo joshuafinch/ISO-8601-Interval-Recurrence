@@ -10,6 +10,7 @@
 		12288AB41B60EFB7009A3D4C /* ISO8601IntervalRecurrence.h in Headers */ = {isa = PBXBuildFile; fileRef = 12288AB31B60EFB7009A3D4C /* ISO8601IntervalRecurrence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12288ABA1B60EFB7009A3D4C /* ISO8601IntervalRecurrence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12288AAE1B60EFB7009A3D4C /* ISO8601IntervalRecurrence.framework */; };
 		12288AC11B60EFB7009A3D4C /* ISO8601IntervalRecurrenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12288AC01B60EFB7009A3D4C /* ISO8601IntervalRecurrenceTests.swift */; };
+		12288ACB1B60FBEA009A3D4C /* ISO8601StringParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12288ACA1B60FBEA009A3D4C /* ISO8601StringParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		12288AB91B60EFB7009A3D4C /* ISO8601IntervalRecurrenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ISO8601IntervalRecurrenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		12288ABF1B60EFB7009A3D4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12288AC01B60EFB7009A3D4C /* ISO8601IntervalRecurrenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISO8601IntervalRecurrenceTests.swift; sourceTree = "<group>"; };
+		12288ACA1B60FBEA009A3D4C /* ISO8601StringParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601StringParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				12288AB31B60EFB7009A3D4C /* ISO8601IntervalRecurrence.h */,
+				12288ACA1B60FBEA009A3D4C /* ISO8601StringParser.swift */,
 				12288AB11B60EFB7009A3D4C /* Supporting Files */,
 			);
 			path = ISO8601IntervalRecurrence;
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12288ACB1B60FBEA009A3D4C /* ISO8601StringParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +327,7 @@
 		12288AC51B60EFB7009A3D4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +337,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		12288AC61B60EFB7009A3D4C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -399,6 +406,7 @@
 				12288AC61B60EFB7009A3D4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12288AC71B60EFB7009A3D4C /* Build configuration list for PBXNativeTarget "ISO8601IntervalRecurrenceTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +415,7 @@
 				12288AC91B60EFB7009A3D4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
