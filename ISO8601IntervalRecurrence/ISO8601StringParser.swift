@@ -174,11 +174,11 @@ public class ISO8601StringParser
             }
         }
 
-        let secondsInMilli = seconds * 1000
-        let minuteInMilli = minutes * 60 * 1000
-        let hourInMilli = hours * 60 * 60 * 1000
+        let secondsInSec = seconds
+        let minuteInSec = minutes * 60
+        let hourInSec = hours * 60 * 60
 
-        let mhsInMilli = secondsInMilli + minuteInMilli + hourInMilli
+        let mhsInSec = secondsInSec + minuteInSec + hourInSec
 
         let yearsInMonths = years * 12
         let yearsAndMonthsInYears = (yearsInMonths + months) / 12.0
@@ -187,7 +187,7 @@ public class ISO8601StringParser
         let weeksInDays = weeks * 7
         let yearsAndMonthsAndWeeksAndDaysInDays = yearsAndMonthsInDays + weeksInDays + days
 
-        return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60 * 1000) + mhsInMilli
+        return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60) + mhsInSec
     }
 
     private static func parseDateTime(datetime: String) -> NSDateComponents?

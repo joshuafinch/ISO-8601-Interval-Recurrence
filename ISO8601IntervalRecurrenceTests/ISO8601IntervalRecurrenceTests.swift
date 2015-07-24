@@ -23,12 +23,15 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         super.tearDown()
     }
 
+    // MARK: -
+
     func testPeriod()
     {
-        let period = "PT1S"
-        let milliseconds = ISO8601StringParser.parsePeriod(period)
+        let period = "P3DT3S1W"
+        let seconds = ISO8601StringParser.parsePeriod(period)
 
-        XCTAssertEqual(milliseconds, 1000, "milliseconds don't match")
+        let mySeconds: Float = (24*60*60*10)+3
+        XCTAssertEqual(seconds, mySeconds, "seconds don't match")
     }
 
     // MARK: -
