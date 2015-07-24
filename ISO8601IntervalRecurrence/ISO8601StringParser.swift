@@ -63,15 +63,19 @@ public class ISO8601StringParser
 
     // MARK: - Parse Parts
 
-    private static func parseRecurrenceAmount(recurrence: String) -> Int?
+    public static func parseRecurrenceCount(recurrence: String) -> Int?
     {
         let scanner = NSScanner(string: recurrence)
         if (scanner.scanString("R", intoString: nil))
         {
-            var recurrenceAmount: Int = NSNotFound
-            if (scanner.scanInteger(&recurrenceAmount))
+            var recurrenceCount: Int = NSNotFound
+            if (scanner.scanInteger(&recurrenceCount))
             {
-                return recurrenceAmount
+                return recurrenceCount
+            }
+            else
+            {
+                return NSNotFound
             }
         }
 
@@ -188,16 +192,5 @@ public class ISO8601StringParser
         let yearsAndMonthsAndWeeksAndDaysInDays = yearsAndMonthsInDays + weeksInDays + days
 
         return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60) + mhsInSec
-    }
-
-    private static func parseDateTime(datetime: String) -> NSDateComponents?
-    {
-        //TODO: Check this is a dateTime string, not a P string or R string or something else
-
-        var components = NSDateComponents()
-
-        //TODO: Extract date and time components
-
-        return components
     }
 }

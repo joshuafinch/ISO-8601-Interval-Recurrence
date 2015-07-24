@@ -34,6 +34,22 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         XCTAssertEqual(seconds, mySeconds, "seconds don't match")
     }
 
+    // MARK: - 
+
+    func testRecurrenceCount()
+    {
+        let recurrence = "R12"
+        let recurrenceCount = ISO8601StringParser.parseRecurrenceCount(recurrence)
+        XCTAssertEqual(recurrenceCount!, 12, "Recurrence count does not match")
+    }
+
+    func testInfiniteRecurrenceCount()
+    {
+        let recurrence = "R"
+        let recurrenceCount = ISO8601StringParser.parseRecurrenceCount(recurrence)
+        XCTAssertEqual(recurrenceCount!, NSNotFound, "Recurrence count does not match")
+    }
+
     // MARK: -
 
     func testRecurrenceStartTimeEndTime()
