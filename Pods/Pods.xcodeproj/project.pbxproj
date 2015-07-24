@@ -7,58 +7,58 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		0D8D1C442CEECF2414AB68A0 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FADCB2A35A101BF40AC1F564 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		035AC62629E45D7576B441AA /* Frameworks */ = {
+		03093971ADA981CFD1E4262B = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		24E5F8884B2D3E4448DC16AB /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		3B0AFF61CAB06874D616FC11 = {
-			isa = PBXGroup;
-			children = (
-				0D8D1C442CEECF2414AB68A0 /* Podfile */,
-				035AC62629E45D7576B441AA /* Frameworks */,
-				4C894EEFAD43BC6E1E2D7E3A /* Products */,
-				24E5F8884B2D3E4448DC16AB /* Targets Support Files */,
+				FADCB2A35A101BF40AC1F564 /* Podfile */,
+				7410C65FBD4D39E66824C1D1 /* Frameworks */,
+				6CB136BE9CE7500719A90D66 /* Products */,
+				D38A7A29325413A7478B9E41 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		4C894EEFAD43BC6E1E2D7E3A /* Products */ = {
+		6CB136BE9CE7500719A90D66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7410C65FBD4D39E66824C1D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D38A7A29325413A7478B9E41 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXProject section */
-		7B7117E8777C2B934C56D4BB /* Project object */ = {
+		D50513522B3A919DC7387AA0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 			};
-			buildConfigurationList = 6A31C31F7FA41A9CC1C62E66 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 98942BE605531D412C3612E8 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 3B0AFF61CAB06874D616FC11;
-			productRefGroup = 4C894EEFAD43BC6E1E2D7E3A /* Products */;
+			mainGroup = 03093971ADA981CFD1E4262B;
+			productRefGroup = 6CB136BE9CE7500719A90D66 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -67,7 +67,7 @@
 /* End PBXProject section */
 
 /* Begin XCBuildConfiguration section */
-		098E8FCBD2307515782338DD /* Debug */ = {
+		A3E92B6BF4F901DB587D69EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -106,7 +106,7 @@
 			};
 			name = Debug;
 		};
-		820B5504C6AE9C5216D8AB0C /* Release */ = {
+		AC5C5BAB61A67FF9884E1A86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -143,16 +143,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A31C31F7FA41A9CC1C62E66 /* Build configuration list for PBXProject "Pods" */ = {
+		98942BE605531D412C3612E8 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				098E8FCBD2307515782338DD /* Debug */,
-				820B5504C6AE9C5216D8AB0C /* Release */,
+				A3E92B6BF4F901DB587D69EC /* Debug */,
+				AC5C5BAB61A67FF9884E1A86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7B7117E8777C2B934C56D4BB /* Project object */;
+	rootObject = D50513522B3A919DC7387AA0 /* Project object */;
 }
