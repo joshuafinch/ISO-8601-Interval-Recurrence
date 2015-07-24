@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.summary      = "Provides the ability to parse ISO 8601:2004 strings to determine Intervals, and Recurrence."
 
   s.description  = <<-DESC
-                   Provides the ability to parse ISO 8601:2004 strings to determine Intervals, and Recurrence.
+                   Provides the ability to parse ISO 8601:2004 strings to determine Intervals, and Recurrence. Takes strings such as "R/PT1W" to show infinite recurrence each week
                    DESC
 
   s.homepage     = "https://github.com/joshuafinch/ISO-8601-Interval-Recurrence"
@@ -84,8 +84,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
+  s.source_files  = "ISO8601IntervalRecurrence", "ISO8601IntervalRecurrence/**/*.{h,m,swift}"
+  s.exclude_files = "ISO8601IntervalRecurrence/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
