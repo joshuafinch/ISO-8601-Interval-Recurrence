@@ -92,24 +92,34 @@ public class ISO8601StringParser
         var seconds: Float = 0
         var weeks: Float = 0
 
-        func nextDateValue(scanner: NSScanner)
+        func nextDateValue(scanner: NSScanner) -> Bool
         {
             var periodValue: Float = 0
             if (scanner.scanFloat(&periodValue))
             {
-                if (scanner.scanString("Y", intoString: nil))
+                if (scanner.scanString("W", intoString: nil))
+                {
+                    weeks = periodValue
+                    return true
+                }
+                else if (scanner.scanString("Y", intoString: nil))
                 {
                     years = periodValue
+                    return true
                 }
                 else if (scanner.scanString("M", intoString: nil))
                 {
                     months = periodValue
+                    return true
                 }
                 else if (scanner.scanString("D", intoString: nil))
                 {
                     days = periodValue
+                    return true
                 }
             }
+
+            return false
         }
 
         func nextTimeValue(scanner: NSScanner) -> Bool
@@ -120,27 +130,21 @@ public class ISO8601StringParser
                 if (scanner.scanString("H", intoString: nil))
                 {
                     hours = periodValue
+                    return true
                 }
                 else if (scanner.scanString("M", intoString: nil))
                 {
                     minutes = periodValue
+                    return true
                 }
                 else if (scanner.scanString("S", intoString: nil))
                 {
                     seconds = periodValue
+                    return true
                 }
-                else if (scanner.scanString("W", intoString: nil))
-                {
-                    weeks = periodValue
-                }
-            }
-            else
-            {
-                println("Couldn't scan a float in: \(scanner.string)")
-                return false
             }
 
-            return true
+            return false
         }
 
         let scanner = NSScanner(string: period)
@@ -159,8 +163,11 @@ public class ISO8601StringParser
                 let dateScanner = NSScanner(string: dateString! as String)
                 while (!dateScanner.atEnd)
                 {
-                    println("stuck on dateScanner?")
-                    nextDateValue(dateScanner)
+                    if (!nextDateValue(dateScanner))
+                    {
+                        println("no more date values? \(dateScanner.scanLocation), \((dateScanner.string as NSString).length)")
+                        break
+                    }
                 }
             }
 
@@ -169,10 +176,10 @@ public class ISO8601StringParser
                 let timeScanner = NSScanner(string: timeString)
                 while(!timeScanner.atEnd)
                 {
-                    let hasNextTimeValue = nextTimeValue(timeScanner)
-                    if (!hasNextTimeValue)
+                    if (!nextTimeValue(timeScanner))
                     {
                         println("no more time values? \(timeScanner.scanLocation), \((timeScanner.string as NSString).length)")
+                        break
                     }
                 }
             }
