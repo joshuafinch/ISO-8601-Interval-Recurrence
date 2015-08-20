@@ -82,20 +82,20 @@ public class ISO8601StringParser
         return nil
     }
 
-    public static func parsePeriod(period: String) -> Float
+    public static func parsePeriod(period: String) -> NSDateComponents
     {
-        var years: Float = 0
-        var months: Float = 0
-        var days: Float = 0
-        var hours: Float = 0
-        var minutes: Float = 0
-        var seconds: Float = 0
-        var weeks: Float = 0
+        var years: Int = 0
+        var months: Int = 0
+        var days: Int = 0
+        var hours: Int = 0
+        var minutes: Int = 0
+        var seconds: Int = 0
+        var weeks: Int = 0
 
         func nextDateValue(scanner: NSScanner) -> Bool
         {
-            var periodValue: Float = 0
-            if (scanner.scanFloat(&periodValue))
+            var periodValue: Int = 0
+            if (scanner.scanInteger(&periodValue))
             {
                 if (scanner.scanString("W", intoString: nil))
                 {
@@ -124,8 +124,8 @@ public class ISO8601StringParser
 
         func nextTimeValue(scanner: NSScanner) -> Bool
         {
-            var periodValue: Float = 0
-            if (scanner.scanFloat(&periodValue))
+            var periodValue: Int = 0
+            if (scanner.scanInteger(&periodValue))
             {
                 if (scanner.scanString("H", intoString: nil))
                 {
@@ -185,7 +185,16 @@ public class ISO8601StringParser
             }
         }
 
-        let secondsInSec = seconds
+        let dateComponents: NSDateComponents = NSDateComponents()
+        dateComponents.year = years
+        dateComponents.month = months
+        dateComponents.day = days + (weeks * 7)
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+        dateComponents.second = seconds
+        return dateComponents
+
+        /*let secondsInSec = seconds
         let minuteInSec = minutes * 60
         let hourInSec = hours * 60 * 60
 
@@ -198,6 +207,6 @@ public class ISO8601StringParser
         let weeksInDays = weeks * 7
         let yearsAndMonthsAndWeeksAndDaysInDays = yearsAndMonthsInDays + weeksInDays + days
 
-        return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60) + mhsInSec
+        return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60) + mhsInSec*/
     }
 }
