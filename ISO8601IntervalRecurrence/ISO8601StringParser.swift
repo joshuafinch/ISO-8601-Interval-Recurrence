@@ -28,7 +28,7 @@ public class ISO8601StringParser
                 // Part begins with R
                 recurrence = part
             }
-            else if (scanner.scanString("P", intoString: nil))
+            else if (scanner.scanString("P", intoString: nil) || scanner.scanString("-P", intoString: nil))
             {
                 // Part begins with P
                 interval = part
@@ -148,6 +148,9 @@ public class ISO8601StringParser
         }
 
         let scanner = NSScanner(string: period)
+
+        let sign = (scanner.scanString("-", intoString: nil)) ? -1 : 1
+
         if (scanner.scanString("P", intoString: nil))
         {
             var dateString: NSString? = ""
@@ -186,27 +189,12 @@ public class ISO8601StringParser
         }
 
         let dateComponents: NSDateComponents = NSDateComponents()
-        dateComponents.year = years
-        dateComponents.month = months
-        dateComponents.day = days + (weeks * 7)
-        dateComponents.hour = hours
-        dateComponents.minute = minutes
-        dateComponents.second = seconds
+        dateComponents.year = years * sign
+        dateComponents.month = months * sign
+        dateComponents.day = (days + (weeks * 7)) * sign
+        dateComponents.hour = hours * sign
+        dateComponents.minute = minutes * sign
+        dateComponents.second = seconds * sign
         return dateComponents
-
-        /*let secondsInSec = seconds
-        let minuteInSec = minutes * 60
-        let hourInSec = hours * 60 * 60
-
-        let mhsInSec = secondsInSec + minuteInSec + hourInSec
-
-        let yearsInMonths = years * 12
-        let yearsAndMonthsInYears = (yearsInMonths + months) / 12.0
-        let yearsAndMonthsInDays = (yearsAndMonthsInYears * 14097.0) / 400.0
-
-        let weeksInDays = weeks * 7
-        let yearsAndMonthsAndWeeksAndDaysInDays = yearsAndMonthsInDays + weeksInDays + days
-
-        return (yearsAndMonthsAndWeeksAndDaysInDays * 24 * 60 * 60) + mhsInSec*/
     }
 }

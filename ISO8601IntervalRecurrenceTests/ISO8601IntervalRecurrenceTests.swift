@@ -89,6 +89,22 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         XCTAssertEqual(dateComponents, periodComponents, "Components don't match")
     }
 
+    func testSignedPeriodValuesUsed()
+    {
+        let period = "-P2Y2M2W2DT2H2M2S"
+        let periodComponents = ISO8601StringParser.parsePeriod(period)
+
+        let dateComponents = NSDateComponents()
+        dateComponents.year = -2
+        dateComponents.month = -2
+        dateComponents.day = -(2 + (2 * 7))
+        dateComponents.hour = -2
+        dateComponents.minute = -2
+        dateComponents.second = -2
+
+        XCTAssertEqual(dateComponents, periodComponents, "Components don't match")
+    }
+
     // MARK: - 
 
     func testRecurrenceCount()
@@ -115,6 +131,11 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
     func testRecurrencePeriod()
     {
         assertPartsMatchString("R12/P2Y10M15DT10H30M20S", parts: (reccurence: "R12", startDateTime: nil, endDateTime: nil, interval: "P2Y10M15DT10H30M20S"))
+    }
+
+    func testRecurrencePeriodSigned()
+    {
+        assertPartsMatchString("R12/-P2Y10M15DT10H30M20S", parts: (reccurence: "R12", startDateTime: nil, endDateTime: nil, interval: "-P2Y10M15DT10H30M20S"))
     }
 
     func testPeriodWithWeek()
