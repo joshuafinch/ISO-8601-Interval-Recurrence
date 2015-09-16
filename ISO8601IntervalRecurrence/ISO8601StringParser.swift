@@ -19,7 +19,7 @@ public class ISO8601StringParser
 
         let parts: [String] = iso8601string.componentsSeparatedByString("/")
 
-        for (index, part) in enumerate(parts)
+        for part in parts
         {
             let scanner = NSScanner(string: part)
 
@@ -50,7 +50,7 @@ public class ISO8601StringParser
                     }
                     else
                     {
-                        println("Weird stuff happening, two end times?")
+                        print("Weird stuff happening, two end times?")
                     }
                 }
             }
@@ -168,7 +168,7 @@ public class ISO8601StringParser
                 {
                     if (!nextDateValue(dateScanner))
                     {
-                        println("no more date values? \(dateScanner.scanLocation), \((dateScanner.string as NSString).length)")
+                        print("no more date values? \(dateScanner.scanLocation), \((dateScanner.string as NSString).length)")
                         break
                     }
                 }
@@ -181,7 +181,7 @@ public class ISO8601StringParser
                 {
                     if (!nextTimeValue(timeScanner))
                     {
-                        println("no more time values? \(timeScanner.scanLocation), \((timeScanner.string as NSString).length)")
+                        print("no more time values? \(timeScanner.scanLocation), \((timeScanner.string as NSString).length)")
                         break
                     }
                 }
