@@ -8,27 +8,27 @@
 
 import Foundation
 
-public class ISO8601StringParser
+open class ISO8601StringParser
 {
-    public static func parseISO8601StringIntoParts(iso8601string: String) -> (reccurence: String?, startDateTime: String?, endDateTime: String?, interval: String?)
+    open static func parseISO8601StringIntoParts(_ iso8601string: String) -> (reccurence: String?, startDateTime: String?, endDateTime: String?, interval: String?)
     {
         var recurrence: String?
         var interval: String?
         var startDateTime: String?
         var endDateTime: String?
 
-        let parts: [String] = iso8601string.componentsSeparatedByString("/")
+        let parts: [String] = iso8601string.components(separatedBy: "/")
 
         for part in parts
         {
-            let scanner = NSScanner(string: part)
+            let scanner = Scanner(string: part)
 
-            if (scanner.scanString("R", intoString: nil))
+            if (scanner.scanString("R", into: nil))
             {
                 // Part begins with R
                 recurrence = part
             }
-            else if (scanner.scanString("P", intoString: nil) || scanner.scanString("-P", intoString: nil))
+            else if (scanner.scanString("P", into: nil) || scanner.scanString("-P", into: nil))
             {
                 // Part begins with P
                 interval = part
@@ -63,13 +63,13 @@ public class ISO8601StringParser
 
     // MARK: - Parse Parts
 
-    public static func parseRecurrenceCount(recurrence: String) -> Int?
+    open static func parseRecurrenceCount(_ recurrence: String) -> Int?
     {
-        let scanner = NSScanner(string: recurrence)
-        if (scanner.scanString("R", intoString: nil))
+        let scanner = Scanner(string: recurrence)
+        if (scanner.scanString("R", into: nil))
         {
             var recurrenceCount: Int = NSNotFound
-            if (scanner.scanInteger(&recurrenceCount))
+            if (scanner.scanInt(&recurrenceCount))
             {
                 return recurrenceCount
             }
@@ -82,7 +82,7 @@ public class ISO8601StringParser
         return nil
     }
 
-    public static func parsePeriod(period: String) -> NSDateComponents
+    open static func parsePeriod(_ period: String) -> DateComponents
     {
         var years: Int = 0
         var months: Int = 0
@@ -92,27 +92,27 @@ public class ISO8601StringParser
         var seconds: Int = 0
         var weeks: Int = 0
 
-        func nextDateValue(scanner: NSScanner) -> Bool
+        func nextDateValue(_ scanner: Scanner) -> Bool
         {
             var periodValue: Int = 0
-            if (scanner.scanInteger(&periodValue))
+            if (scanner.scanInt(&periodValue))
             {
-                if (scanner.scanString("W", intoString: nil))
+                if (scanner.scanString("W", into: nil))
                 {
                     weeks = periodValue
                     return true
                 }
-                else if (scanner.scanString("Y", intoString: nil))
+                else if (scanner.scanString("Y", into: nil))
                 {
                     years = periodValue
                     return true
                 }
-                else if (scanner.scanString("M", intoString: nil))
+                else if (scanner.scanString("M", into: nil))
                 {
                     months = periodValue
                     return true
                 }
-                else if (scanner.scanString("D", intoString: nil))
+                else if (scanner.scanString("D", into: nil))
                 {
                     days = periodValue
                     return true
@@ -122,22 +122,22 @@ public class ISO8601StringParser
             return false
         }
 
-        func nextTimeValue(scanner: NSScanner) -> Bool
+        func nextTimeValue(_ scanner: Scanner) -> Bool
         {
             var periodValue: Int = 0
-            if (scanner.scanInteger(&periodValue))
+            if (scanner.scanInt(&periodValue))
             {
-                if (scanner.scanString("H", intoString: nil))
+                if (scanner.scanString("H", into: nil))
                 {
                     hours = periodValue
                     return true
                 }
-                else if (scanner.scanString("M", intoString: nil))
+                else if (scanner.scanString("M", into: nil))
                 {
                     minutes = periodValue
                     return true
                 }
-                else if (scanner.scanString("S", intoString: nil))
+                else if (scanner.scanString("S", into: nil))
                 {
                     seconds = periodValue
                     return true
@@ -147,37 +147,38 @@ public class ISO8601StringParser
             return false
         }
 
-        let scanner = NSScanner(string: period)
+        let scanner = Scanner(string: period)
 
-        let sign = (scanner.scanString("-", intoString: nil)) ? -1 : 1
+        let sign = (scanner.scanString("-", into: nil)) ? -1 : 1
 
-        if (scanner.scanString("P", intoString: nil))
+        if (scanner.scanString("P", into: nil))
         {
             var dateString: NSString? = ""
-            scanner.scanUpToString("T", intoString: &dateString)
-            scanner.scanString("T", intoString: nil)
+            scanner.scanUpTo("T", into: &dateString)
+            scanner.scanString("T", into: nil)
 
             let length = (scanner.string as NSString).length
             let range = NSRange(location: scanner.scanLocation, length: length - scanner.scanLocation)
-            let timeString = (scanner.string as NSString).substringWithRange(range) as String
+            let timeString = (scanner.string as NSString).substring(with: range) as String
 
-            if (dateString?.length > 0)
-            {
-                let dateScanner = NSScanner(string: dateString! as String)
-                while (!dateScanner.atEnd)
-                {
-                    if (!nextDateValue(dateScanner))
+            if let dateString = dateString {
+                if dateString.length > 0 {
+                    let dateScanner = Scanner(string: dateString as String)
+                    while (!dateScanner.isAtEnd)
                     {
-                        print("no more date values? \(dateScanner.scanLocation), \((dateScanner.string as NSString).length)")
-                        break
+                        if (!nextDateValue(dateScanner))
+                        {
+                            print("no more date values? \(dateScanner.scanLocation), \((dateScanner.string as NSString).length)")
+                            break
+                        }
                     }
                 }
             }
 
             if ((timeString as NSString).length > 0)
             {
-                let timeScanner = NSScanner(string: timeString)
-                while(!timeScanner.atEnd)
+                let timeScanner = Scanner(string: timeString)
+                while(!timeScanner.isAtEnd)
                 {
                     if (!nextTimeValue(timeScanner))
                     {
@@ -188,7 +189,7 @@ public class ISO8601StringParser
             }
         }
 
-        let dateComponents: NSDateComponents = NSDateComponents()
+        var dateComponents: DateComponents = DateComponents()
         dateComponents.year = years * sign
         dateComponents.month = months * sign
         dateComponents.day = (days + (weeks * 7)) * sign

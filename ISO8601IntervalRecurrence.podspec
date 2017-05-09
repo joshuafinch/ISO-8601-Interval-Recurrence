@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ISO8601IntervalRecurrence"
-  s.version      = "1.0.0"
+  s.version      = "2.0.0"
   s.summary      = "Provides the ability to parse ISO 8601:2004 strings to determine Intervals, and Recurrence."
 
   s.description  = <<-DESC

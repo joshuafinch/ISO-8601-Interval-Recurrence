@@ -30,7 +30,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         let period = "P3W50DT3S"
         let periodComponents = ISO8601StringParser.parsePeriod(period)
 
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = 0
         dateComponents.month = 0
         dateComponents.day = 50 + (3 * 7)
@@ -46,7 +46,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         let period = "P1W"
         let periodComponents = ISO8601StringParser.parsePeriod(period)
 
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = 0
         dateComponents.month = 0
         dateComponents.day = 7
@@ -62,7 +62,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         let period = "P1M"
         let periodComponents = ISO8601StringParser.parsePeriod(period)
 
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = 0
         dateComponents.month = 1
         dateComponents.day = 0
@@ -78,7 +78,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         let period = "P2Y2M2W2DT2H2M2S"
         let periodComponents = ISO8601StringParser.parsePeriod(period)
 
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = 2
         dateComponents.month = 2
         dateComponents.day = 2 + (2 * 7)
@@ -94,7 +94,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         let period = "-P2Y2M2W2DT2H2M2S"
         let periodComponents = ISO8601StringParser.parsePeriod(period)
 
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = -2
         dateComponents.month = -2
         dateComponents.day = -(2 + (2 * 7))
@@ -153,7 +153,7 @@ class ISO8601IntervalRecurrenceTests: XCTestCase
         assertPartsMatchString("R12/P1Y2M15DT12H30M0S/19850412T232050", parts: (reccurence: "R12", startDateTime: nil, endDateTime: "19850412T232050", interval: "P1Y2M15DT12H30M0S"))
     }
 
-    func assertPartsMatchString(string: String, parts: (reccurence: String?, startDateTime: String?, endDateTime: String?, interval: String?))
+    func assertPartsMatchString(_ string: String, parts: (reccurence: String?, startDateTime: String?, endDateTime: String?, interval: String?))
     {
         let newParts = ISO8601StringParser.parseISO8601StringIntoParts(string)
 
